@@ -1,34 +1,14 @@
-import { useEffect, useState } from 'react';
-import axios from 'axios'
-import { FETCH_URL } from './global/constants';
-import { ArticleProps, Article } from './components/article';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Home from './pages/Home';
 
 function App() {
-
-  const [collectData, setCollectData] = useState<ArticleProps[]>([])
-
-  useEffect(() => {
-    axios(FETCH_URL)
-      .then(resolve => resolve)
-      .then(data => setCollectData(data.data))
-      .catch(err => {
-        alert('There was error while retrieving the data!')
-      })
-  }, [])
-
-
   return (
     <div className="App">
-      {
-        collectData.map((artcl: ArticleProps) => {
-          return <Article
-            key={artcl.title}
-            title={artcl.title}
-            url={artcl.url}
-            imageUrl={artcl.imageUrl}
-          />
-        })
-      }
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }

@@ -1,3 +1,4 @@
 .article_container {
   border: 1px solid red;
+  max-width: 350px;
 }
