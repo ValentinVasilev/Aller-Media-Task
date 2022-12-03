@@ -4,12 +4,12 @@ export interface ArticleProps {
   imageUrl: string,
   title: string,
   url: string,
-
+  deleteArticle(title: string): any
 }
 
 export const ArticleComponent = (props: ArticleProps) => {
 
-  const { imageUrl, title, url } = props;
+  const { imageUrl, title, url, deleteArticle } = props;
 
   const [enableUpdate, setEnableUpdate] = useState<boolean>(false)
 
@@ -33,7 +33,7 @@ export const ArticleComponent = (props: ArticleProps) => {
             <div className='update_section'>
               <h1 className='title'>{title}</h1>
               <div className='update_actions'>
-                <button className='btn delete' type='button'>Delete</button>
+                <button className='btn delete' type='button' onClick={() => deleteArticle(title)}>Delete</button>
                 <button className='btn update' type='button' onClick={() => setEnableUpdate(true)}>Update</button>
               </div>
             </div>
