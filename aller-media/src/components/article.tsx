@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import '../styles/components/article.component.css'
 export interface ArticleProps {
   imageUrl: string,
@@ -24,7 +24,7 @@ export const ArticleComponent = (props: ArticleProps) => {
         enableUpdate
           ? (
             <div className='update_section'>
-              <input placeholder={title} autoFocus onChange={(e) => setUpdateArticleTitle(e.target.value)} />
+              <input placeholder={title} autoFocus onChange={(e: ChangeEvent<HTMLInputElement>) => setUpdateArticleTitle(e.target.value)} />
               <div className='update_actions'>
                 <button className='btn cancel' type='button' onClick={() => setEnableUpdate(false)}>Cancel</button>
                 <button className='btn save' type='button' onClick={() => updateArticle(title, updateArticleTitle)}>Save</button>

@@ -21,6 +21,7 @@ const Home = () => {
       })
   }, [])
 
+
   // Get current Articles
   const indexOfLastArticle: number = currentPage * articlesPerPage;
   const indexOfFirstArticle: number = indexOfLastArticle - articlesPerPage;
@@ -34,7 +35,7 @@ const Home = () => {
 
 
   return (
-    <div >
+    <div>
       <Articles
         articles={currentArticles}
       />

@@ -9,19 +9,22 @@ const Articles = (props: ArticlesProps) => {
 
   const { articles } = props;
 
-  const [allData, setAllData] = useState<any>()
+  const [allData, setAllData] = useState<ArticleProps[]>([])
 
   useEffect(() => {
     setAllData(articles)
   }, [articles])
 
-  const deleteAticle = (title: string) => {
-    setAllData(allData.filter((article: any) => article.title !== title))
+
+  // Delete Article
+  const deleteArticle = (title: string) => {
+    setAllData(allData.filter((article: ArticleProps) => article.title !== title))
   }
 
+  // Update Article
   const UpdateArticle = (title: string, newTitle: string) => {
 
-    let updatedData = allData.map((article: any) => {
+    let updatedData = allData.map((article: ArticleProps) => {
 
       if (article.title === title) {
         return { ...article, title: newTitle }
@@ -43,7 +46,7 @@ const Articles = (props: ArticlesProps) => {
             title={artcl.title}
             url={artcl.url}
             imageUrl={artcl.imageUrl}
-            deleteArticle={deleteAticle}
+            deleteArticle={deleteArticle}
             updateArticle={UpdateArticle}
           />
         })
