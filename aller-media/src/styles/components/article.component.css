@@ -1,4 +1,8 @@
 .article_container {
+  display: flex;
+  flex-direction: column;
   border: 1px solid red;
   max-width: 350px;
+  min-width: 350px;
+  margin: 1vh;
 }
