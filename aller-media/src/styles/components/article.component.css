@@ -21,7 +21,6 @@
 .update_section {
   display: flex;
   flex-direction: column;
-  /* justify-content: space-evenly; */
 }
 .update_actions {
   display: flex;
@@ -49,4 +48,24 @@
 }
 .cancel {
   background-color: orange;
+}
+.delete_notification {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+.article_card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+.delete_options {
+  display: flex;
+  justify-content: space-evenly;
+}
+.article_input {
+  width: 80%;
+  align-self: center;
 }
