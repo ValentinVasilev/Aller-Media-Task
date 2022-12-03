@@ -4,6 +4,7 @@ import axios from 'axios'
 import { FETCH_URL } from '../global/constants';
 import { ArticleProps } from '../components/Article';
 import Articles from '../components/Articles';
+import Pagination from '../components/Pagination';
 
 const Home = () => {
 
@@ -21,14 +22,26 @@ const Home = () => {
   }, [])
 
   // Get current Articles
-  const indexOfLastArticle = currentPage * articlesPerPage;
-  const indexOfFirstArticle = indexOfLastArticle - articlesPerPage;
-  const currentArticles = collectData.slice(indexOfFirstArticle, indexOfLastArticle);
+  const indexOfLastArticle: number = currentPage * articlesPerPage;
+  const indexOfFirstArticle: number = indexOfLastArticle - articlesPerPage;
+  const currentArticles: ArticleProps[] = collectData.slice(indexOfFirstArticle, indexOfLastArticle);
+
+
+  // Change page
+  const paginate = (pageNumber: number) => {
+    setCurrentPage(pageNumber)
+  };
+
 
   return (
     <div >
       <Articles
         articles={currentArticles}
+      />
+      <Pagination
+        articlesPerPage={articlesPerPage}
+        totalArticles={collectData.length}
+        paginate={paginate}
       />
     </div>
   )
