@@ -44,6 +44,7 @@ const Articles = (props: ArticlesProps) => {
             url={artcl.url}
             imageUrl={artcl.imageUrl}
             deleteArticle={deleteAticle}
+            updateArticle={UpdateArticle}
           />
         })
       }

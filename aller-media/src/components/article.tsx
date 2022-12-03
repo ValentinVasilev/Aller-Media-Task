@@ -5,13 +5,15 @@ export interface ArticleProps {
   title: string,
   url: string,
   deleteArticle(title: string): any
+  updateArticle(title: string, newTitle: string): any
 }
 
 export const ArticleComponent = (props: ArticleProps) => {
 
-  const { imageUrl, title, url, deleteArticle } = props;
+  const { imageUrl, title, url, deleteArticle, updateArticle } = props;
 
   const [enableUpdate, setEnableUpdate] = useState<boolean>(false)
+  const [updateArticleTitle, setUpdateArticleTitle] = useState<string>('')
 
   return (
     <article className="article_container">
@@ -22,10 +24,10 @@ export const ArticleComponent = (props: ArticleProps) => {
         enableUpdate
           ? (
             <div className='update_section'>
-              <input placeholder={title} autoFocus />
+              <input placeholder={title} autoFocus onChange={(e) => setUpdateArticleTitle(e.target.value)} />
               <div className='update_actions'>
                 <button className='btn cancel' type='button' onClick={() => setEnableUpdate(false)}>Cancel</button>
-                <button className='btn save' type='button'>Save</button>
+                <button className='btn save' type='button' onClick={() => updateArticle(title, updateArticleTitle)}>Save</button>
               </div>
             </div>
           )
