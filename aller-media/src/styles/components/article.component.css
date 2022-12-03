@@ -20,6 +20,11 @@
 }
 .update_section {
   display: flex;
+  flex-direction: column;
+  /* justify-content: space-evenly; */
+}
+.update_actions {
+  display: flex;
   justify-content: space-evenly;
 }
 .btn {

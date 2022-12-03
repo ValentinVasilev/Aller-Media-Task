@@ -3,10 +3,11 @@ import '../styles/components/article.component.css'
 export interface ArticleProps {
   imageUrl: string,
   title: string,
-  url: string
+  url: string,
+
 }
 
-export const Article = (props: ArticleProps) => {
+export const ArticleComponent = (props: ArticleProps) => {
 
   const { imageUrl, title, url } = props;
 
@@ -19,26 +20,25 @@ export const Article = (props: ArticleProps) => {
       </a>
       {
         enableUpdate
-          ? <input placeholder={title} autoFocus />
-          : <h1 className='title'>{title}</h1>
-      }
-      {
-        enableUpdate
           ? (
             <div className='update_section'>
-              <button className='btn cancel' type='button' onClick={() => setEnableUpdate(false)}>Cancel</button>
-              <button className='btn save' type='button'>Save</button>
+              <input placeholder={title} autoFocus />
+              <div className='update_actions'>
+                <button className='btn cancel' type='button' onClick={() => setEnableUpdate(false)}>Cancel</button>
+                <button className='btn save' type='button'>Save</button>
+              </div>
             </div>
           )
           : (
             <div className='update_section'>
-              <button className='btn delete' type='button'>Delete</button>
-              <button className='btn update' type='button' onClick={() => setEnableUpdate(true)}>Update</button>
+              <h1 className='title'>{title}</h1>
+              <div className='update_actions'>
+                <button className='btn delete' type='button'>Delete</button>
+                <button className='btn update' type='button' onClick={() => setEnableUpdate(true)}>Update</button>
+              </div>
             </div>
           )
       }
-
     </article>
-
   )
 }
