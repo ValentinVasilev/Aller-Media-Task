@@ -5,20 +5,30 @@ import { ArticleProps, Article } from './components/article';
 
 function App() {
 
-  const [collectData, setCollectData] = useState<ArticleProps>()
+  const [collectData, setCollectData] = useState<ArticleProps[]>([])
 
   useEffect(() => {
     axios(FETCH_URL)
       .then(resolve => resolve)
       .then(data => setCollectData(data.data))
+      .catch(err => {
+        alert('There was error while retrieving the data!')
+      })
   }, [])
 
 
-  console.log(collectData)
-
   return (
     <div className="App">
-
+      {
+        collectData.map((artcl: ArticleProps) => {
+          return <Article
+            key={artcl.title}
+            title={artcl.title}
+            url={artcl.url}
+            imageUrl={artcl.imageUrl}
+          />
+        })
+      }
     </div>
   );
 }
