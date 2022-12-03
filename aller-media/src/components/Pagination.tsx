@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import '../styles/components/pagination.component.css'
 
 interface PaginationProps {
@@ -9,8 +10,13 @@ interface PaginationProps {
 const Pagination = (props: PaginationProps) => {
 
   const { articlesPerPage, totalArticles, paginate } = props;
+  const [selectedButton, setSelectedButton] = useState<number>(1)
 
-  const pageNumbers = [];
+  const pageNumbers: number[] = [];
+
+  useEffect(() => {
+
+  }, [selectedButton])
 
   for (let i = 1; i <= Math.ceil(totalArticles / articlesPerPage); i++) {
     pageNumbers.push(i);
@@ -21,7 +27,7 @@ const Pagination = (props: PaginationProps) => {
       <ul className='pagination_list'>
         {pageNumbers.map((number: number) => (
           <li key={number} className='page_item'>
-            <button onClick={() => paginate(number)} className='page_link'>
+            <button onClick={() => { paginate(number); setSelectedButton(number) }} className='page_link' style={{ backgroundColor: selectedButton === number ? 'skyblue' : 'transparent' }}>
               {number}
             </button>
           </li>

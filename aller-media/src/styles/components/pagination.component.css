@@ -23,7 +23,3 @@
   border: 1px solid gray;
   cursor: pointer;
 }
-.page_link:hover {
-  background-color: skyblue;
-  color: white;
-}
