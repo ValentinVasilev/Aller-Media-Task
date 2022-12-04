@@ -1,30 +1,43 @@
 import { ArticleComponent, ArticleProps } from "./Article"
 import '../styles/Home.css'
 import { useState, useEffect } from "react";
+import { useAppDispatch, useAppSelector } from '../app/hooks';
+import { updateArticles, deleteArticles, selectArticle } from '../app/features/articlesSlice';
+
 interface ArticlesProps {
   articles: ArticleProps[]
 }
 
 const Articles = (props: ArticlesProps) => {
 
+  const dispatch = useAppDispatch()
+  const select = useAppSelector(selectArticle)
+
   const { articles } = props;
 
   const [allData, setAllData] = useState<ArticleProps[]>([])
+  const [persistedData, setPersistedData] = useState<ArticleProps[]>([])
+
+  let selectedData = select.articles[0]
 
   useEffect(() => {
     setAllData(articles)
-  }, [articles])
-
+    setPersistedData(selectedData)
+  }, [articles, selectedData])
 
   // Delete Article
   const deleteArticle = (title: string) => {
-    setAllData(allData.filter((article: ArticleProps) => article.title !== title))
+
+    let filteredData = persistedData.filter((article: ArticleProps) => article.title !== title)
+
+    dispatch(deleteArticles(filteredData))
   }
+
 
   // Update Article
   const UpdateArticle = (title: string, newTitle: string) => {
 
-    let updatedData = allData.map((article: ArticleProps) => {
+    let updatedData = persistedData.map((article: ArticleProps) => {
 
       if (article.title === title) {
         return { ...article, title: newTitle }
@@ -32,7 +45,7 @@ const Articles = (props: ArticlesProps) => {
 
       return article;
     })
-    setAllData(updatedData)
+    dispatch(updateArticles(updatedData))
 
   }
 
